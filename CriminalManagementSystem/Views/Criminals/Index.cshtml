@@ -1,0 +1,103 @@
+@model IEnumerable<CriminalManagementSystem.Models.Criminal>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Index" method="get">
+    <div class="row mb-3">
+        <div class="col-md-5">
+            <label class="form-label">Search Criminal</label>
+            <input type="text"
+                   name="searchString"
+                   value="@ViewBag.SearchString"
+                   class="form-control"
+                   placeholder="Search by Code, Name or City" />
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Status</label>
+            <select name="status" class="form-control">
+                <option value="All"
+                        selected="@(ViewBag.Status == null || ViewBag.Status == "All")">All</option>
+                <option value="Arrested"
+                        selected="@(ViewBag.Status == "Arrested")">Arrested</option>
+                <option value="Under Trial"
+                        selected="@(ViewBag.Status == "Under Trial")">Under Trial</option>
+                <option value="Released"
+                        selected="@(ViewBag.Status == "Released")">Released</option>
+                <option value="Convicted"
+                        selected="@(ViewBag.Status == "Convicted")">Convicted</option>
+                <option value="Acquitted"
+                        selected="@(ViewBag.Status == "Acquitted")">Acquitted</option>
+            </select>
+        </div>
+
+        <div class="col-md-2 mt-4">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CriminalCode)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <th>@Html.DisplayNameFor(model => model.Gender)</th>
+                <th>@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+                <th>@Html.DisplayNameFor(model => model.Age)</th>
+                <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.Address)</th>
+                <th>@Html.DisplayNameFor(model => model.City)</th>
+                <th>@Html.DisplayNameFor(model => model.State)</th>
+                <th>@Html.DisplayNameFor(model => model.IdentificationMark)</th>
+                <th>@Html.DisplayNameFor(model => model.Photo)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th>@Html.DisplayNameFor(model => model.ArrestDate)</th>
+                <th>@Html.DisplayNameFor(model => model.ReleaseDate)</th>
+                <th>@Html.DisplayNameFor(model => model.CreatedDate)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.CriminalCode)</td>
+                    <td>@Html.DisplayFor(model => item.FirstName)</td>
+                    <td>@Html.DisplayFor(model => item.LastName)</td>
+                    <td>@Html.DisplayFor(model => item.Gender)</td>
+                    <td>@Html.DisplayFor(model => item.DateOfBirth)</td>
+                    <td>@Html.DisplayFor(model => item.Age)</td>
+                    <td>@Html.DisplayFor(model => item.Phone)</td>
+                    <td>@Html.DisplayFor(model => item.Email)</td>
+                    <td>@Html.DisplayFor(model => item.Address)</td>
+                    <td>@Html.DisplayFor(model => item.City)</td>
+                    <td>@Html.DisplayFor(model => item.State)</td>
+                    <td>@Html.DisplayFor(model => item.IdentificationMark)</td>
+                    <td>@Html.DisplayFor(model => item.Photo)</td>
+                    <td>@Html.DisplayFor(model => item.Status)</td>
+                    <td>@Html.DisplayFor(model => item.ArrestDate)</td>
+                    <td>@Html.DisplayFor(model => item.ReleaseDate)</td>
+                    <td>@Html.DisplayFor(model => item.CreatedDate)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CriminalId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CriminalId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CriminalId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
